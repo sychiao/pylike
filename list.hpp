@@ -6,8 +6,9 @@ using namespace std;
 template<typename T>
 struct pydeque{
   vector<T> container;
-
+  
   pydeque(){}
+  pydeque(initializer_list<T> lst):container(lst){}
 
   void append(T ele){
      this->container.push_back(ele);
@@ -21,18 +22,24 @@ struct pydeque{
      }
   }
 
-  T pop(){
-    return this->container.pop_back();
+  void pop(){
+    this->container.pop_back();
   }
 
   int len(){
      return this->container.size();
   }
 
-  T popleft(){
-    return this->container.pop_front();
+  void popleft(){
+    auto& v = this->container;
+    v.erase(v.begin());
+  }
+
+  T operator[](int idx){
+    return this->get_item(idx);
   }
 };
+
 
 template<typename T>
 int len(T v){

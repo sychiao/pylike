@@ -48,3 +48,14 @@ struct generator {
     promise_type* p;
 };
 
+generator<int> range(int end) {
+  for(int n=0;n<end;n++)
+    co_yield n;
+}
+
+generator<int> range(int start, int end) {
+  for(int n=start;n<end;n++)
+    co_yield n;
+}
+
+
